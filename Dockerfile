@@ -19,8 +19,6 @@ COPY main.sh /jefferson_2672501/main.sh
 # Dar permisos de ejecución al script
 RUN chmod +x /jefferson_2672501/main.sh
 
-RUN sh /jefferson_2672501/main.sh
-
 # Exponer el puerto
 EXPOSE 8012
 
