@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  servicio1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8012:80"
+    volumes:
+      - ./datadrive:/jefferson_2672501/datadrive  # Cambié la ruta de volumen local
+    networks:
+      - mynetwork
+    extra_hosts:
+      - "DESKTOP-U1OU838:192.168.1.4"  # Acceso remoto
+    command: ["httpd-foreground"]  # Cambia CMD a command para corregir
+
+  servicio2:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 0123456789
+      MYSQL_DATABASE: Datos
+      MYSQL_USER: jefferson
+      MYSQL_PASSWORD: 0123456789
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+
+volumes:
+  db_data:
